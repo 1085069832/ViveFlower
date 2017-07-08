@@ -6,10 +6,14 @@ using Leap;
 public class HandGrabController : MonoBehaviour
 {
     HandManager handManager;
+    Hand hand;
+    [HideInInspector]
+    public bool isGrab;//是否抓取
+    [HideInInspector]
+    public bool startMesh;
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -17,16 +21,15 @@ public class HandGrabController : MonoBehaviour
     {
         if (handManager != null)
         {
-            foreach (Hand hand in handManager._hands)
+            hand = handManager._hand;
+
+            if (hand.PinchStrength > 0.8f)
             {
-                if (hand.IsRight)
-                {
-                    print("right" + hand.PinchStrength);
-                }
-                else
-                {
-                    print("left" + hand.PinchStrength);
-                }
+                isGrab = true;
+            }
+            else
+            {
+                isGrab = false;
             }
         }
     }
@@ -36,6 +39,7 @@ public class HandGrabController : MonoBehaviour
         if (other.tag == "HandCenter")
         {
             handManager = other.GetComponent<HandManager>();
+            startMesh = true;
         }
     }
 }

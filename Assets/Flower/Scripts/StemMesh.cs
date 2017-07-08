@@ -43,7 +43,6 @@ public class StemMesh : MonoBehaviour
     {
         //if (flowerBloom && flowerBloom.phase_ != 1)
         //{
-            print("stem");
             UpdateMesh();
             MeshFilter filter = GetComponent<MeshFilter>();
 

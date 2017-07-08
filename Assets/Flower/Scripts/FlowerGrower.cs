@@ -127,7 +127,6 @@ public class FlowerGrower : MonoBehaviour
             growthProgress = Mathf.Clamp(growthProgress + Time.deltaTime * growthRate, 0.0f, 1.0f);
         if (flowerBloom && flowerBloom.phase_ != 1)
         {
-            print("花生长");
             //花生长
             SetSizes();
         }

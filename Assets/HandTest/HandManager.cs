@@ -8,20 +8,18 @@ public class HandManager : MonoBehaviour
 {
     LeapProvider leapProvider;
     Frame frame;
-    Hand rightHand;
-    Hand leftHand;
-    List<Hand> hands = new List<Hand>();
+    Hand hand;
 
     private void Awake()
     {
         leapProvider = FindObjectOfType<LeapProvider>() as LeapProvider;
     }
 
-    public List<Hand> _hands
+    public Hand _hand
     {
         get
         {
-            return hands;
+            return hand;
         }
     }
 
@@ -35,36 +33,24 @@ public class HandManager : MonoBehaviour
         frame = leapProvider.CurrentFrame;
         if (transform.name == "Sphere_R")
         {
-            print("R");
             if (frame.Hands[0].IsRight)
             {
-                rightHand = frame.Hands[0];
+                hand = frame.Hands[0];
             }
             else
             {
-                rightHand = frame.Hands[1];
-            }
-
-            if (!hands.Contains(rightHand))
-            {
-                hands.Add(rightHand);
+                hand = frame.Hands[1];
             }
         }
         else if (transform.name == "Sphere_L")
         {
-            print("L");
             if (frame.Hands[0].IsLeft)
             {
-                leftHand = frame.Hands[0];
+                hand = frame.Hands[0];
             }
             else
             {
-                leftHand = frame.Hands[1];
-            }
-
-            if (!hands.Contains(leftHand))
-            {
-                hands.Add(leftHand);
+                hand = frame.Hands[1];
             }
         }
     }

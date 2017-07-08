@@ -24,9 +24,11 @@ public class PetalMesh : MonoBehaviour
     private Mesh back_;
 
     FlowerBloom flowerBloom;
+    HandGrabController handGrabController;
 
     void Start()
     {
+        handGrabController = GameObject.Find("Collider").GetComponent<HandGrabController>();
         flowerBloom = GameObject.Find("Flower").GetComponent<FlowerBloom>();
         GetComponent<MeshFilter>().mesh = new Mesh();
         InitMesh();
@@ -34,9 +36,8 @@ public class PetalMesh : MonoBehaviour
 
     void Update()
     {
-        //if (flowerBloom && flowerBloom.phase_ != 1)
-        //{
-            print("petal");
+        if (flowerBloom && flowerBloom.phase_ != 1 || handGrabController.startMesh)
+        {
             UpdateMesh();
             front_.MarkDynamic();
             front_.vertices = vertices_;
@@ -53,7 +54,7 @@ public class PetalMesh : MonoBehaviour
 
             filter.mesh.CombineMeshes(combine, true, false);
             filter.mesh.RecalculateBounds();
-        //}
+        }
     }
 
     private void InitMesh()
