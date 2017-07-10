@@ -37,4 +37,12 @@ public class HandGrabController : MonoBehaviour
             return hand.Fingers[0].TipPosition.ToVector3();
         }
     }
+
+    public Vector3 handVelocity
+    {
+        get
+        {
+            return hand.PalmVelocity.ToVector3();
+        }
+    }
 }

@@ -49,14 +49,15 @@ public class ObjectGrab : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         RigidFinger rf = other.GetComponentInParent<RigidFinger>();
-
+        handGrabController = other.GetComponentInParent<RigidHand>().GetComponentInChildren<HandGrabController>();
         if (rf && rf.fingerType == Leap.Finger.FingerType.TYPE_THUMB)
         {
             //是否是拇指
             thumbTip = rf.bones[3];
-            handGrabController = thumbTip.GetComponentInParent<RigidHand>().GetComponentInChildren<HandGrabController>();
             canGrab = true;
         }
+
+        GetComponent<HandTouchForce>().AddForceForHand(handGrabController.handVelocity);
     }
 
     private void OnTriggerExit(Collider other)
