@@ -24,11 +24,11 @@ public class PetalMesh : MonoBehaviour
     private Mesh back_;
 
     FlowerBloom flowerBloom;
-    HandGrabController handGrabController;
+    MeshController meshController;
 
     void Start()
     {
-        handGrabController = GameObject.Find("Collider").GetComponent<HandGrabController>();
+        meshController = GameObject.Find("Collider").GetComponent<MeshController>();
         flowerBloom = GameObject.Find("Flower").GetComponent<FlowerBloom>();
         GetComponent<MeshFilter>().mesh = new Mesh();
         InitMesh();
@@ -36,7 +36,7 @@ public class PetalMesh : MonoBehaviour
 
     void Update()
     {
-        if (flowerBloom && flowerBloom.phase_ != 1 || handGrabController.startMesh)
+        if (flowerBloom && flowerBloom.phase_ != 1 || meshController.isMesh)
         {
             UpdateMesh();
             front_.MarkDynamic();

@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// 判断哪只手指碰到花
-/// </summary>
+
 public class ObjectGrab : MonoBehaviour
 {
     public static ObjectGrab Instance;
@@ -14,7 +12,6 @@ public class ObjectGrab : MonoBehaviour
     HandGrabController handGrabController;
     Transform thumbTip;
     FixedJoint fj;
-    // List<Transform> fingers = new List<Transform>();
 
     private void Awake()
     {
@@ -36,6 +33,7 @@ public class ObjectGrab : MonoBehaviour
             if (!fj)
             {
                 grabbableObject.OnGrab();
+                transform.position = handGrabController.thumbTip;
                 fj = gameObject.AddComponent<FixedJoint>();
                 fj.connectedBody = thumbTip.gameObject.GetComponent<Rigidbody>();
             }
@@ -55,10 +53,9 @@ public class ObjectGrab : MonoBehaviour
         if (rf && rf.fingerType == Leap.Finger.FingerType.TYPE_THUMB)
         {
             //是否是拇指
-            print("canGrab true");
-            handGrabController = GameObject.Find("Collider").GetComponent<HandGrabController>();
-            canGrab = true;
             thumbTip = rf.bones[3];
+            handGrabController = thumbTip.GetComponentInParent<RigidHand>().GetComponentInChildren<HandGrabController>();
+            canGrab = true;
         }
     }
 
@@ -70,8 +67,6 @@ public class ObjectGrab : MonoBehaviour
         {
             //是否是拇指
             canGrab = false;
-            print("canGrab false");
-
         }
     }
 }
