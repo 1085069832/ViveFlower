@@ -56,8 +56,8 @@ public class ObjectGrab : MonoBehaviour
             thumbTip = rf.bones[3];
             canGrab = true;
         }
-
-        GetComponent<HandTouchForce>().AddForceForHand(handGrabController.handVelocity);
+        if (!canGrab)
+            GetComponent<HandTouchForce>().AddForceForHand(handGrabController.handVelocity);
     }
 
     private void OnTriggerExit(Collider other)

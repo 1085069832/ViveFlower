@@ -16,10 +16,6 @@ public class HandManager : MonoBehaviour
         leapProvider = FindObjectOfType<LeapProvider>() as LeapProvider;
     }
 
-    private void Start()
-    {
-    }
-
     public Hand _hand
     {
         get

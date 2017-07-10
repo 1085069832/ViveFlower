@@ -38,11 +38,32 @@ public class HandGrabController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 手速度
+    /// </summary>
     public Vector3 handVelocity
     {
         get
         {
-            return hand.PalmVelocity.ToVector3();
+            return FingersVelocity();
+        }
+    }
+
+    private Vector3 FingersVelocity()
+    {
+        if (hand != null)
+        {
+            Vector3 velocity = Vector3.zero;
+            List<Finger> fingers = hand.Fingers;
+            foreach (Finger finger in fingers)
+            {
+                velocity += finger.TipVelocity.ToVector3();
+            }
+            return (hand.PalmVelocity.ToVector3() + velocity) / 6;
+        }
+        else
+        {
+            return Vector3.zero;
         }
     }
 }
