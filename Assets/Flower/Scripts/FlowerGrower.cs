@@ -48,7 +48,6 @@ public class FlowerGrower : MonoBehaviour
         flower_head_scale_ = flowerHead.localScale;//记录花蕾自身缩放
         light_source_intensity_ = lightSource.intensity;//灯光
         flowerHead.localScale = Vector3.zero;//设置花中心自身缩放为0
-
         //foreach (PetalMesh pedal in pedals)
         //    pedal.growthProgress = 0;  //设置花瓣生长度
 
@@ -125,11 +124,11 @@ public class FlowerGrower : MonoBehaviour
             growthProgress = Mathf.Clamp(growthProgress - Time.deltaTime * deathRate, 0.0f, 1.0f);
         else if (growing_)//生长
             growthProgress = Mathf.Clamp(growthProgress + Time.deltaTime * growthRate, 0.0f, 1.0f);
-        if (flowerBloom && flowerBloom.phase_ != 1)
-        {
+        //if (flowerBloom && flowerBloom.phase_ != 1)
+        //{
             //花生长
             SetSizes();
-        }
+       // }
         //生长度达到1开启花
 
         if (growthProgress == 1.0f && flowerToBloom != null)

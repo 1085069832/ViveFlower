@@ -39,13 +39,13 @@ public class StemMesh : MonoBehaviour
 
     void Update()
     {
-            UpdateMesh();
-            MeshFilter filter = GetComponent<MeshFilter>();
+        UpdateMesh();
+        MeshFilter filter = GetComponent<MeshFilter>();
 
-            filter.mesh.MarkDynamic();
-            filter.mesh.vertices = vertices_;
-            filter.mesh.RecalculateBounds();
-            filter.mesh.RecalculateNormals();
+        filter.mesh.MarkDynamic();
+        filter.mesh.vertices = vertices_;
+        filter.mesh.RecalculateBounds();
+        filter.mesh.RecalculateNormals();
     }
 
     public bool IsBroken()

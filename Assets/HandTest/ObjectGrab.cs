@@ -12,7 +12,6 @@ public class ObjectGrab : MonoBehaviour
     HandGrabController handGrabController;
     Transform thumbTip;
     FixedJoint fj;
-
     private void Awake()
     {
         Instance = this;
@@ -36,6 +35,7 @@ public class ObjectGrab : MonoBehaviour
                 transform.position = handGrabController.thumbTip;
                 fj = gameObject.AddComponent<FixedJoint>();
                 fj.connectedBody = thumbTip.gameObject.GetComponent<Rigidbody>();
+                GameObject.Find("FlowerManager").GetComponent<CreateFlower>().InstanceFlower();
             }
         }
         else
