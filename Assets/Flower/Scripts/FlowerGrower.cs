@@ -49,11 +49,11 @@ public class FlowerGrower : MonoBehaviour
         light_source_intensity_ = lightSource.intensity;//灯光
         flowerHead.localScale = Vector3.zero;//设置花中心自身缩放为0
 
-        foreach (PetalMesh pedal in pedals)
-            pedal.growthProgress = 0;  //设置花瓣生长度
+        //foreach (PetalMesh pedal in pedals)
+        //    pedal.growthProgress = 0;  //设置花瓣生长度
 
-        foreach (PetalMesh leaf in leaves)
-            leaf.growthProgress = 0; //设置叶生长度
+        //foreach (PetalMesh leaf in leaves)
+        //    leaf.growthProgress = 0; //设置叶生长度
     }
 
     float ComputeGrowthAmount(float start, float end)

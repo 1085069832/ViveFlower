@@ -9,6 +9,8 @@ public class HandGrabController : MonoBehaviour
     Hand hand;
     [HideInInspector]
     public bool isGrab;//是否抓取
+
+
     // Update is called once per frame
     void Update()
     {
@@ -16,7 +18,8 @@ public class HandGrabController : MonoBehaviour
 
         if (hand != null)
         {
-            if (hand.PinchStrength > 0.8f)
+            float grabAngel = hand.PinchStrength;
+            if (grabAngel > 0.8f)
             {
                 isGrab = true;
             }
