@@ -23,11 +23,9 @@ public class StemMesh : MonoBehaviour
     private bool[] broken;
     private float stump_width_ = 1.0f;
     private bool is_diminishing_ = false;
-    FlowerBloom flowerBloom;
 
     void Start()
     {
-        flowerBloom = GameObject.Find("Flower").GetComponent<FlowerBloom>();
         broken = new bool[segments.Length];
         for (int i = 0; i < broken.Length; ++i)
             broken[i] = false;
@@ -41,8 +39,6 @@ public class StemMesh : MonoBehaviour
 
     void Update()
     {
-        //if (flowerBloom && flowerBloom.phase_ != 1)
-        //{
             UpdateMesh();
             MeshFilter filter = GetComponent<MeshFilter>();
 
@@ -50,7 +46,6 @@ public class StemMesh : MonoBehaviour
             filter.mesh.vertices = vertices_;
             filter.mesh.RecalculateBounds();
             filter.mesh.RecalculateNormals();
-        //}
     }
 
     public bool IsBroken()
