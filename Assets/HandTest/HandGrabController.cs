@@ -19,7 +19,7 @@ public class HandGrabController : MonoBehaviour
         if (hand != null)
         {
             float grabAngel = hand.PinchStrength;
-            if (grabAngel > 0.8f)
+            if (grabAngel > 0.7f)
             {
                 isGrab = true;
             }
