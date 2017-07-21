@@ -56,7 +56,6 @@ public class ObjectGrab : MonoBehaviour
     {
         RigidFinger rf = other.GetComponentInParent<RigidFinger>();
         handCenter = other.GetComponentInParent<RigidHand>().transform.Find("palm").Find("Sphere");
-        print(handCenter.name);
         handGrabController = other.GetComponentInParent<RigidHand>().GetComponentInChildren<HandGrabController>();
         isTrigger = true;
         if (rf && rf.fingerType == Leap.Finger.FingerType.TYPE_THUMB)
