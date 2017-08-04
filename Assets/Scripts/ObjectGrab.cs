@@ -15,6 +15,8 @@ public class ObjectGrab : MonoBehaviour
     FixedJoint fj;
     Transform handCenter;
 
+    bool isMirrirMode = true;//镜像模式
+
     private void Awake()
     {
         Instance = this;
@@ -55,8 +57,17 @@ public class ObjectGrab : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         RigidFinger rf = other.GetComponentInParent<RigidFinger>();
-        handCenter = other.GetComponentInParent<RigidHand>().transform.Find("palm").Find("Sphere");
-        handGrabController = other.GetComponentInParent<RigidHand>().GetComponentInChildren<HandGrabController>();
+        MirrorController mirrorController = other.GetComponentInParent<MirrorController>();
+        if (isMirrirMode && mirrorController.isMirrorHand)
+        {
+            handCenter = other.GetComponentInParent<MirrorHand>().transform.Find("palm").Find("Sphere");
+            handGrabController = other.GetComponentInParent<MirrorHand>().GetComponentInChildren<HandGrabController>();
+        }
+        else
+        {
+            handCenter = other.GetComponentInParent<RigidHand>().transform.Find("palm").Find("Sphere");
+            handGrabController = other.GetComponentInParent<RigidHand>().GetComponentInChildren<HandGrabController>();
+        }
         isTrigger = true;
         if (rf && rf.fingerType == Leap.Finger.FingerType.TYPE_THUMB)
         {
@@ -64,8 +75,11 @@ public class ObjectGrab : MonoBehaviour
             thumbTip = rf.bones[3];
             canGrab = true;
         }
+
         if (!canGrab)
+        {
             GetComponent<HandTouchForce>().AddForceForHand(handGrabController.handVelocity);
+        }
     }
 
     private void OnTriggerExit(Collider other)

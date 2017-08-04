@@ -20,7 +20,36 @@ public class HandManager : MonoBehaviour
     {
         get
         {
+            GetHand();
             return hand;
+        }
+    }
+
+    void GetHand()
+    {
+        frame = leapProvider.CurrentFrame;
+        //伸出去的第一只手是0
+        if (isRight)
+        {
+            if (frame.Hands[0].IsRight)
+            {
+                hand = frame.Hands[0];
+            }
+            else
+            {
+                hand = frame.Hands[1];
+            }
+        }
+        else
+        {
+            if (frame.Hands[0].IsLeft)
+            {
+                hand = frame.Hands[0];
+            }
+            else
+            {
+                hand = frame.Hands[1];
+            }
         }
     }
 
@@ -28,34 +57,34 @@ public class HandManager : MonoBehaviour
     /// 获取触碰的手
     /// </summary>
     /// <param name="other"></param>
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name == "Collider")
-        {
-            frame = leapProvider.CurrentFrame;
-            //伸出去的第一只手是0
-            if (isRight)
-            {
-                if (frame.Hands[0].IsRight)
-                {
-                    hand = frame.Hands[0];
-                }
-                else
-                {
-                    hand = frame.Hands[1];
-                }
-            }
-            else
-            {
-                if (frame.Hands[0].IsLeft)
-                {
-                    hand = frame.Hands[0];
-                }
-                else
-                {
-                    hand = frame.Hands[1];
-                }
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.name == "Collider")
+    //    {
+    //        frame = leapProvider.CurrentFrame;
+    //        //伸出去的第一只手是0
+    //        if (isRight)
+    //        {
+    //            if (frame.Hands[0].IsRight)
+    //            {
+    //                hand = frame.Hands[0];
+    //            }
+    //            else
+    //            {
+    //                hand = frame.Hands[1];
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if (frame.Hands[0].IsLeft)
+    //            {
+    //                hand = frame.Hands[0];
+    //            }
+    //            else
+    //            {
+    //                hand = frame.Hands[1];
+    //            }
+    //        }
+    //    }
+    //}
 }
